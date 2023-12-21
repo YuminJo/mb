@@ -1,0 +1,20 @@
+package com.ll.mb.domain.product.product.service;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.ll.mb.domain.book.book.entity.Book;
+import com.ll.mb.domain.product.product.repository.ProductRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
+public class ProductService {
+	private final ProductRepository productRepository;
+
+	public void createProduct(Book book) {
+
+	}
+}
