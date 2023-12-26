@@ -1,12 +1,14 @@
-package com.ll.mb.domain.product.product.entity;
+package com.ll.mb.domain.product.cart.entity;
 
 import static lombok.AccessLevel.*;
 
 import com.ll.mb.domain.member.member.entity.Member;
+import com.ll.mb.domain.product.product.entity.Product;
 import com.ll.mb.global.jpa.BaseEntity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,11 +23,9 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString(callSuper = true)
-public class Product extends BaseEntity {
+public class CartItem extends BaseEntity {
 	@ManyToOne
-	private Member maker;
-	private String relTypeCode;
-	private long relId;
-	private String name;
-	private int price;
+	private Member member;
+	@OneToOne
+	private Product product;
 }

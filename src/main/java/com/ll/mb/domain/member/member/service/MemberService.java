@@ -6,8 +6,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ll.mb.domain.cash.cash.entity.CashLog;
+import com.ll.mb.domain.cash.cash.repository.CashLogRepository;
+import com.ll.mb.domain.cash.cash.service.CashService;
 import com.ll.mb.domain.member.member.entity.Member;
 import com.ll.mb.domain.member.member.repository.MemberRepository;
+import com.ll.mb.global.jpa.BaseEntity;
 import com.ll.mb.global.rsData.RsData;
 
 import lombok.RequiredArgsConstructor;
@@ -18,6 +22,8 @@ import lombok.RequiredArgsConstructor;
 public class MemberService {
 	private final MemberRepository memberRepository;
 	private final PasswordEncoder passwordEncoder;
+	private final CashLogRepository cashLogRepository;
+	private final CashService cashService;
 
 	@Transactional
 	public RsData<Member> join(String username, String password) {
@@ -33,5 +39,10 @@ public class MemberService {
 
 	public Optional<Member> findByUsername(String username) {
 		return memberRepository.findByUsername(username);
+	}
+
+	@Transactional
+	public void addCash(Member member, long price, CashLog.EvenType eventType, BaseEntity relEntity) {
+		CashLog cashLog = cashService.addCash(member, price, eventType, relEntity);
 	}
 }

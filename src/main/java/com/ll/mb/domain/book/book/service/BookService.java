@@ -9,6 +9,7 @@ import com.ll.mb.domain.member.member.entity.Member;
 
 import lombok.RequiredArgsConstructor;
 
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
