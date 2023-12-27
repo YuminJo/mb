@@ -1,8 +1,7 @@
-package com.ll.mb.domain.product.cart.entity;
+package com.ll.mb.domain.product.order.entity;
 
 import static lombok.AccessLevel.*;
 
-import com.ll.mb.domain.member.member.entity.Member;
 import com.ll.mb.domain.product.product.entity.Product;
 import com.ll.mb.global.jpa.BaseEntity;
 
@@ -22,9 +21,13 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString(callSuper = true)
-public class CartItem extends BaseEntity {
+public class OrderItem extends BaseEntity {
 	@ManyToOne
-	private Member buyer;
+	private Order order;
 	@ManyToOne
 	private Product product;
+
+	public long getPayPrice() {
+		return product.getPrice();
+	}
 }
